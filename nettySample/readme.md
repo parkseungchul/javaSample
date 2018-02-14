@@ -8,4 +8,4 @@ netty sample
 	
 2. file server/client 
 	- [com.psc.netty.file](src/com/psc/netty/file) 참고
-	- 대용량 파일 전송 
+	- 파일 전송 ( server -> client )	
