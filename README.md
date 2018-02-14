@@ -1,3 +1,3 @@
 java sample
 
-[nettySample.go](nettySample): netty base simple source
+[nettySample.go](nettySample): netty base sample source
