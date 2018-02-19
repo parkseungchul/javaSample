@@ -18,5 +18,5 @@ netty sample
 	
 	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fileClient1.png?raw=true) 
 	
-		![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fileClient2.png?raw=true)
+	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fileClient2.png?raw=true)
 	
