@@ -17,9 +17,6 @@ import io.netty.channel.FileRegion;
 
 public class FileServerHandler extends ChannelInboundHandlerAdapter {
 
-
-	
-	
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		String filePath = "C://GIT/github.com/parkseungchul/javaSample/nettySample/files/source/guhala.jpg";

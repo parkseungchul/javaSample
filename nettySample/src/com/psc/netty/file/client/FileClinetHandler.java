@@ -10,8 +10,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class FileClinetHandler extends ChannelInboundHandlerAdapter {
 	
-
-	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		
@@ -33,34 +31,12 @@ public class FileClinetHandler extends ChannelInboundHandlerAdapter {
 			fos.write(bytes);
 			
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}finally {
 			if (fos != null) {
 				fos.close();
 			}
 		}
-		
-		
-		
-//		FileOutputStream fos = null;
-//		FileChannel out = null;
-//		
-//		byte[] bytes = (byte[])msg;
-//		ByteBuf messageBuffer = Unpooled.buffer();
-//		ByteBuffer buf = messageBuffer.nioBuffer();
-//		
-//		try {
-//			fos = new FileOutputStream(new File(filePath), true);
-//			out = fos.getChannel();
-//			out.write(buf);
-//			buf.flip();
-//			buf.clear();
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			if (out != null) {out.close();}
-//			if (fos != null) {fos.close();}
-//		}
 	}
 	
 	@Override
