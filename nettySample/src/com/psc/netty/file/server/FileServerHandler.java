@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -17,9 +18,17 @@ import io.netty.channel.FileRegion;
 
 public class FileServerHandler extends ChannelInboundHandlerAdapter {
 
+	
+	private String sourcePath = "C://GIT/github.com/parkseungchul/javaSample/nettySample/files/source/";
+	private String[] fileList = new String[]{"guhala0.jpg","guhala1.jpg", "guhala2.jpg"};
+	
+	
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		String filePath = "C://GIT/github.com/parkseungchul/javaSample/nettySample/files/source/guhala.jpg";
+		byte[] bytes = (byte[])msg;
+		String readMessage = new String(bytes);				
+		System.out.println(readMessage);
+		String filePath = sourcePath + fileList[Integer.parseInt(readMessage)];
 		File file = new File(filePath);
 		
 		FileInputStream in = new FileInputStream(file);

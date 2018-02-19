@@ -6,6 +6,7 @@ netty sample
 	
 	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/echoCient.png?raw=true) 
 	
-2. file server/client 
+2. file 전송
+	- process: client 파일 선택 -> server 전송 -> client 파일 다운로드   
 	- [com.psc.netty.file](src/com/psc/netty/file) 참고
-	- 파일 전송 ( server -> client )	
+	
