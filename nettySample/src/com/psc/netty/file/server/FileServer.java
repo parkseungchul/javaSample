@@ -1,7 +1,5 @@
 package com.psc.netty.file.server;
 
-import com.psc.netty.echo.server.EchoServerHandler;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

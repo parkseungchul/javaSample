@@ -19,12 +19,15 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 	private static int cnt = 0;
 	private static float totSize = 0L;
 	
+	private long start;
+	private long end;
+	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		
 		System.out.println("select download files");
 		for(int i=0; i<fileList.length; i++) {
-			System.out.println(i +"   "+ fileList[i]);
+			System.out.println( i + " " + fileList[i] );
 		}
 		Scanner sc = new Scanner(System.in);
 		String input = sc.nextLine();
@@ -43,6 +46,12 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 		messageBuffer.writeBytes(input.getBytes());
 		ctx.writeAndFlush(messageBuffer);
 		
+		
+		start = System.currentTimeMillis();
+		
+
+
+		
 	}
 	
 	@Override
@@ -54,7 +63,7 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 		
 		float size = totSize/(1024*1024);
 		
-		System.out.println(cnt +" - "+ size + " MB");
+		System.out.println(cnt+"["+ bytes.length  +"] " + size + " MB");
 		String filePath = targetPath + fileList[inputNum];
 		
 		File file = new File(filePath);
@@ -85,6 +94,9 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 	
 	@Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+		
+		end = System.currentTimeMillis();
+		System.out.println( "실행 시간 : " + ( end - start )/1000.0 );
         System.out.println("upload finish!");
     }
 }
