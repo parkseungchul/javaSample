@@ -17,6 +17,7 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 	private String[] fileList = new String[]{"guhala0.jpg","guhala1.jpg", "guhala2.jpg","1GB.zip"};
 	private int inputNum;
 	private static int cnt = 0;
+	private static float totSize = 0L;
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -49,7 +50,11 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 		cnt = cnt + 1;
 		byte[] bytes = (byte[])msg;
 		
-		System.out.println(cnt +"-"+ bytes.length);
+		totSize = totSize + bytes.length;
+		
+		float size = totSize/(1024*1024);
+		
+		System.out.println(cnt +" - "+ size + " MB");
 		String filePath = targetPath + fileList[inputNum];
 		
 		File file = new File(filePath);
