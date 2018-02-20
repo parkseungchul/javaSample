@@ -102,6 +102,6 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 		System.out.println("total size     : " + totalSize + "MB");
 		System.out.println("excute time    : " + runtime + " sec");
 		System.out.println("speed download : " + totalSize/runtime +" MB/s");
-        System.out.println("upload finish!");
+        System.out.println("finish!");
     }
 }
