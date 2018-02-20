@@ -26,7 +26,7 @@ public class Fille2Client {
 				@Override
 				protected void initChannel(SocketChannel ch) throws Exception {
 					ChannelPipeline p = ch.pipeline();
-					p.addLast(new ByteArrayDecoder2());
+					p.addLast(new ByteArrayDecoder());
 					p.addLast(new ByteArrayEncoder());
 					p.addLast(new File2ClinetHandler());
 				}

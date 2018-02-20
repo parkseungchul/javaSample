@@ -21,6 +21,7 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 	
 	private long start;
 	private long end;
+
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -94,9 +95,13 @@ public class File2ClinetHandler extends ChannelInboundHandlerAdapter {
 	
 	@Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-		
 		end = System.currentTimeMillis();
-		System.out.println( "실행 시간 : " + ( end - start )/1000.0 );
+		
+		long runtime = ( end - start )/1000;
+		float totalSize = (totSize/(1024*1024));
+		System.out.println("total size     : " + totalSize + "MB");
+		System.out.println("excute time    : " + runtime + " sec");
+		System.out.println("speed download : " + totalSize/runtime +" MB/s");
         System.out.println("upload finish!");
     }
 }
