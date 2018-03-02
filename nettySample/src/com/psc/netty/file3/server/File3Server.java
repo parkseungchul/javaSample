@@ -1,18 +1,16 @@
-package com.psc.netty.file2.server;
+package com.psc.netty.file3.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.bytes.ByteArrayDecoder;
-import io.netty.handler.codec.bytes.ByteArrayEncoder;
 
-public class File2Server {
+public class File3Server {
 
 	public static void main(String[] args) throws Exception {
 			EventLoopGroup bossGroup = new NioEventLoopGroup(1);
@@ -27,9 +25,8 @@ public class File2Server {
 					@Override
 					protected void initChannel(SocketChannel ch) throws Exception {
 						ChannelPipeline p = ch.pipeline();
-						p.addLast(new ByteArrayDecoder());
-						p.addLast(new ByteArrayEncoder());
-						p.addLast(new File2ServerHandler());
+						p.addLast(new ByteArrayDecoder2());
+						p.addLast(new File3ServerHandler());
 						
 					}
 				}); 
