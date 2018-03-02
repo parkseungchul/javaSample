@@ -45,8 +45,8 @@ netty sample
 
 	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fixed1.png?raw=true)
 	
-5. broadcast와 udp 를 이용하여 파일 다운로드 프로그램 
+6. broadcast와 udp 를 이용하여 파일 다운로드 프로그램 
 	- process: client 기동 -> server로 부터 client에 파일 다운로드 
-	- [com.psc.netty.file3](src/com/psc/netty/udp) 참고 - 네티 인 액션 책
+	- [com.psc.netty.udp](src/com/psc/netty/udp) 참고 - 네티 인 액션 책
 
 	
