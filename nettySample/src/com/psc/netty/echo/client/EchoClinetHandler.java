@@ -43,11 +43,6 @@ public class EchoClinetHandler extends ChannelInboundHandlerAdapter {
 	
 	
 	@Override
-	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-		channelActive(ctx);
-	}
-	
-	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		cause.printStackTrace();
 		ctx.close();

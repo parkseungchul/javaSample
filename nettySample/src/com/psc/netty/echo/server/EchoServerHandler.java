@@ -13,7 +13,9 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 		
 		final String readMessage = ((ByteBuf)msg).toString(Charset.forName("UTF-8"));
 		System.out.println("서버에서 받은 메시지["+readMessage+"]");
-		ctx.write(msg);
+		
+
+		ctx.write(readMessage);
 	}
 	
 	@Override	
@@ -26,5 +28,18 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		cause.printStackTrace();
 		ctx.close();
+	}
+	
+	
+	private String getString(int cnt) {
+
+		
+		StringBuffer sb = new StringBuffer();
+		
+		for(int i=0; i<cnt;i++) {
+			sb.append("A");
+		}
+		System.out.println(sb.toString());
+		return sb.toString();
 	}
 }
