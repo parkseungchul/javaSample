@@ -24,7 +24,7 @@ ip, port, character set, size 등과 같이 서버에 따라 값이 달라질 �
 
 샘플 주고 시연해주니까 급 방긋하더랔 ㅋㅋㅋ 나는야 천사 갑~  
 
-7. netty VO 통신 
+칠번. netty VO 통신 
 	- 구동 방법: 
 	1. 환경 점검 
 		config/env.properties 설정 확인
@@ -43,11 +43,11 @@ ip, port, character set, size 등과 같이 서버에 따라 값이 달라질 �
 	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fixed2.png?raw=true) 
 
 
-6. broadcast와 udp 를 이용하여 파일 다운로드 프로그램 
+육번. broadcast와 udp 를 이용하여 파일 다운로드 프로그램 
 	- process: client 기동 -> server로 부터 client에 파일 다운로드 
 	- [com.psc.netty.udp](src/com/psc/netty/udp) 참고 - 네티 인 액션 책
 	
-5. file upload2
+오번. file upload2
 	- process: client 파일 선택 -> file 전송 -> server 업로드 완성
 	- [com.psc.netty.file3](src/com/psc/netty/fixed) 참고
 	- FixedLength 전문을 이용한 파일 업로드!! 
@@ -55,12 +55,12 @@ ip, port, character set, size 등과 같이 서버에 따라 값이 달라질 �
 
 	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fixed1.png?raw=true)
 	
-4. file upload 
+사번. file upload 
 	- process: client 파일 선택 -> file 전송 -> server 업로드 완성
 	- [com.psc.netty.file3](src/com/psc/netty/file2) 참고
 	- 문제: 업로드 시 바이트를 잘라 파일명을 넣어야하는되 잘 되질 않아 일단 하드코딩	
 
-3. large file download
+삼번. large file download
 	- process: client 다운로드 파일 선택 -> file 전송 -> client 파일 다운로드 완료   
 	- [com.psc.netty.file2](src/com/psc/netty/file2) 참고
 	- 중복 파일 업로드 삭제 로직 개선 	
@@ -69,12 +69,12 @@ ip, port, character set, size 등과 같이 서버에 따라 값이 달라질 �
 	
 	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fileClient2.png?raw=true)
 
-2. file download basic
+이번. file download basic
 	- process: client 다운로드 파일 선택 -> file 전송 -> client 파일 다운로드 완료   
 	- [com.psc.netty.file](src/com/psc/netty/file) 참고
 	- 중복 파일 업로드 경우 파일 삭제
 						
-1. echo server/client 
+일번. echo server/client 
 	- [com.psc.netty.echo](src/com/psc/netty/echo) 참고
 	- 에코 서버 클라이언 종료를 원할 경우 "END" 입력
 	
