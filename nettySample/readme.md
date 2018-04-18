@@ -24,24 +24,20 @@ ip, port, character set, size 등과 같이 서버에 따라 값이 달라질 �
 
 샘플 주고 시연해주니까 급 방긋하더랔 ㅋㅋㅋ 나는야 천사 갑~  
 
-1. netty VO 통신 
-	- 구동 방법: 
-	1. 환경 점검 
-		config/env.properties 설정 확인
-		SERVER_SIZE: 서버에서 클라이언트로 보내는 VO byte 사이즈
-    	CLIENT_SIZE: 클라이언트에서 서버로 보내는 VO byte 사이즈
-    	SERVER_IP: 서버 IP
-    	PORT: 서버 PORT
-    	CHARACTER_SET: 언어셋
-	2. 서버 기동: com.psc.netty.fixed2.server.FixedServer2 실행
-		점검사항
-			com.psc.netty.fixed2.server.app.ServerApp2 에 서버에서 실행되는 로직
-	3. 클라이언트 기동: com.psc.netty.fixed2.client.FixedClient2 실행
-		점검사항
-			com.psc.netty.fixed2.client.app.ClientApp2 에 클라이언트에서 실행되는 로직	
-
+1. netty VO 통신  
+	- 환경 점검 
+		- config/env.properties 설정 확인
+		- SERVER_SIZE: 서버에서 클라이언트로 보내는 VO byte 사이즈
+		- CLIENT_SIZE: 클라이언트에서 서버로 보내는 VO byte 사이즈
+		- SERVER_IP: 서버 IP
+		- PORT: 서버 PORT
+		- CHARACTER_SET: 언어셋	
+	- 서버 기동: com.psc.netty.fixed2.server.FixedServer2 실행
+		- com.psc.netty.fixed2.server.app.ServerApp2 에 서버에서 실행되는 업무 로직			
+	- 클라이언트 기동: com.psc.netty.fixed2.client.FixedClient2 실행
+		- com.psc.netty.fixed2.client.app.ClientApp2 에 클라이언트에서 실행되는 로직
+				
 	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fixed2.png?raw=true) 
-
 
 2. broadcast와 udp 를 이용하여 파일 다운로드 프로그램 
 	- process: client 기동 -> server로 부터 client에 파일 다운로드 
