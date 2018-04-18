@@ -1,52 +1,51 @@
-내가 어쩌다 이걸 만들려고 했는지...
-
-서버와 클라언트 환경에서의  파일 업로드/다운로드 생각했는데 고려하고 생각 할 부분이 많다. 
-
-예를 들어 업로드/다운로드 할 때 파일 이름 어떻게 넣을래? 추가 정보는 어디다 넣고 싶니? 전문을 어떻게 구성 할래? 최적의 속도가 나올까? 등등 
-
-쉽게 가려고 netty 기반으로 시작했는데 네트워크 프로그래밍이 해 본적이 없어서 고생을 많이 했다.
-
-... 이주일이 흐른 뒤
-
-전문 방식으로 데이터를 주고 받을 수 있게 되었다.  
-
-netty 구조를  살짝 이해하고  encoding/decoding만 신경써서 해주면 된다 (네티 우앙 ~ 굳)
-
-추후 하고 싶은 건...
-
-1. 속도 튜닝
-
-2. 통신 모듈 아답터화 하여 Delimiter, XML, JSON 통신이 가능하게 ...
-
-혼자 하긴 힘들고 같이 덕지덕지 붙여 갈 사람 있었음 좋겠다 ㅠ.ㅠ 
-
 netty sample
 
-1. echo server/client 
-	- [com.psc.netty.echo](src/com/psc/netty/echo) 참고
-	- 에코 서버 클라이언 종료를 원할 경우 "END" 입력
-	
-	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/echoClient.png?raw=true) 
-	
-2. file download basic
-	- process: client 다운로드 파일 선택 -> file 전송 -> client 파일 다운로드 완료   
-	- [com.psc.netty.file](src/com/psc/netty/file) 참고
-	- 중복 파일 업로드 경우 파일 삭제
+서버 클라이언트로 TCP/IP 통신 요건이 발생하여 7번을 만들게 되었다.
 
-3. large file download
-	- process: client 다운로드 파일 선택 -> file 전송 -> client 파일 다운로드 완료   
-	- [com.psc.netty.file2](src/com/psc/netty/file2) 참고
-	- 중복 파일 업로드 삭제 로직 개선 	
-	
-	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fileClient1.png?raw=true) 
-	
-	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fileClient2.png?raw=true)
-	
-	
-4. file upload 
-	- process: client 파일 선택 -> file 전송 -> server 업로드 완성
-	- [com.psc.netty.file3](src/com/psc/netty/file2) 참고
-	- 문제: 업로드 시 바이트를 잘라 파일명을 넣어야하는되 잘 되질 않아 일단 하드코딩	
+(1 ~ 6번 프로그램을 만들면서 공부한 걸 바탕으로...)
+
+기본 네티를 쓰게 된다면 보내는 대용량 데이터일 경우 채널이 inactive 되는 현상이 발생(물론 내가 실수 한 것일 수도...)되어
+
+FixedLength 방식으로 정해진 규격으로 데이터를 보내고 받아보고자 프로그램을 만들었다.
+
+대용량 데이터일 경우도 자바 힙 메모리가 허용한 한 통신이 가능한 것으로 확인 되었으며
+
+(대용량 파일을 보내고 받는 요건이 있다면 약간의 커스트 마이징을 통해 자바 힙 메모리 사이즈 무관하게 업로드/다운도로드 가능)
+
+서버에 여러 클라이언트가 데이터를 요청해도 문제 없이 응답할 수 있도록 구현 되었다 
+
+(client에서 uuid 생성하고 서버는 uuid를 이용하여 unique 하게 데이터를 저장)
+
+ip, port, character set, size 등과 같이 서버에 따라 값이 달라질 수 있는 것들은 properties로 빼 놨다.
+
+이 프로그램을 기반해서 운영 시스템에 리모트 로그 찾는 프로그램에 사용 되었다. 
+  
+개발자에게 TCP/IP 통신 프로그램 짜라고 하니 울고 있길래 
+
+샘플 주고 시연해주니까 급 방긋하더랔 ㅋㅋㅋ 나는야 천사 갑~  
+
+7. netty VO 통신 
+	- 구동 방법: 
+	1. 환경 점검 
+		config/env.properties 설정 확인
+		SERVER_SIZE: 서버에서 클라이언트로 보내는 VO byte 사이즈
+    	CLIENT_SIZE: 클라이언트에서 서버로 보내는 VO byte 사이즈
+    	SERVER_IP: 서버 IP
+    	PORT: 서버 PORT
+    	CHARACTER_SET: 언어셋
+	2. 서버 기동: com.psc.netty.fixed2.server.FixedServer2 실행
+		점검사항
+			com.psc.netty.fixed2.server.app.ServerApp2 에 서버에서 실행되는 로직
+	3. 클라이언트 기동: com.psc.netty.fixed2.client.FixedClient2 실행
+		점검사항
+			com.psc.netty.fixed2.client.app.ClientApp2 에 클라이언트에서 실행되는 로직	
+
+	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fixed2.png?raw=true) 
+
+
+6. broadcast와 udp 를 이용하여 파일 다운로드 프로그램 
+	- process: client 기동 -> server로 부터 client에 파일 다운로드 
+	- [com.psc.netty.udp](src/com/psc/netty/udp) 참고 - 네티 인 액션 책
 	
 5. file upload2
 	- process: client 파일 선택 -> file 전송 -> server 업로드 완성
@@ -56,8 +55,46 @@ netty sample
 
 	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fixed1.png?raw=true)
 	
-6. broadcast와 udp 를 이용하여 파일 다운로드 프로그램 
-	- process: client 기동 -> server로 부터 client에 파일 다운로드 
-	- [com.psc.netty.udp](src/com/psc/netty/udp) 참고 - 네티 인 액션 책
+4. file upload 
+	- process: client 파일 선택 -> file 전송 -> server 업로드 완성
+	- [com.psc.netty.file3](src/com/psc/netty/file2) 참고
+	- 문제: 업로드 시 바이트를 잘라 파일명을 넣어야하는되 잘 되질 않아 일단 하드코딩	
 
+3. large file download
+	- process: client 다운로드 파일 선택 -> file 전송 -> client 파일 다운로드 완료   
+	- [com.psc.netty.file2](src/com/psc/netty/file2) 참고
+	- 중복 파일 업로드 삭제 로직 개선 	
+	
+	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fileClient1.png?raw=true) 
+	
+	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/fileClient2.png?raw=true)
+
+2. file download basic
+	- process: client 다운로드 파일 선택 -> file 전송 -> client 파일 다운로드 완료   
+	- [com.psc.netty.file](src/com/psc/netty/file) 참고
+	- 중복 파일 업로드 경우 파일 삭제
+						
+1. echo server/client 
+	- [com.psc.netty.echo](src/com/psc/netty/echo) 참고
+	- 에코 서버 클라이언 종료를 원할 경우 "END" 입력
+	
+	![screenshot](https://github.com/parkseungchul/javaSample/blob/master/nettySample/img/echoClient.png?raw=true) 
+	
+
+
+	
+
+	
+
+	
+
+
+
+			
+				
+
+
+
+
+  
 	

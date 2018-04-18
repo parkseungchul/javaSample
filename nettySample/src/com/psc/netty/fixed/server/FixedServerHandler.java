@@ -103,24 +103,6 @@ public class FixedServerHandler extends ChannelInboundHandlerAdapter {
 			}
 		}
 		**/
-		
-
-//
-//		String filePath = targetPath +"/"+"test.txt";
-//		File file = new File(filePath);
-//
-//		FileOutputStream fos = null;
-//		try {
-//			fos = new FileOutputStream(file,true);
-//			fos.write(bytes);
-//			
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			if (fos != null) {
-//				fos.close();
-//			}
-//		}
 	}
 	
 	@Override

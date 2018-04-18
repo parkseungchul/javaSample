@@ -13,7 +13,7 @@ public class FixedDecoder extends ByteToMessageDecoder {
 
 	@Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List<Object> out) throws Exception {
-        System.out.print(">" + msg.readableBytes() +"<-" + FixedLengthVO.HEADER_INT);
+        System.out.println(">" + msg.readableBytes() +"<-" + FixedLengthVO.HEADER_INT);
 		if (msg.readableBytes() < FixedLengthVO.HEADER_INT) {
             return; 
         }
@@ -25,7 +25,6 @@ public class FixedDecoder extends ByteToMessageDecoder {
 		if (msg.readableBytes() < cntInt) {
             return; 
         }
-		System.out.println("--->4");
 		System.out.println(msg.readableBytes()+" "+cntInt);
         out.add(msg.readBytes(cntInt));
 	}
